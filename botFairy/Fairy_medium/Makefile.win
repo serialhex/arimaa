@@ -1,0 +1,42 @@
+# Project: arimaa
+# Makefile created by Dev-C++ 4.9.9.2
+
+CPP  = g++.exe
+CC   = gcc.exe
+WINDRES = windres.exe
+RES  = 
+OBJ  = board.o getMove.o search.o eval.o hash.o $(RES)
+LINKOBJ  = board.o getMove.o search.o eval.o hash.o $(RES)
+LIBS =  -L"C:/Dev-Cpp/lib"  
+INCS =  -I"C:/Dev-Cpp/include" 
+CXXINCS =  -I"C:/Dev-Cpp/lib/gcc/mingw32/3.4.2/include"  -I"C:/Dev-Cpp/include/c++/3.4.2/backward"  -I"C:/Dev-Cpp/include/c++/3.4.2/mingw32"  -I"C:/Dev-Cpp/include/c++/3.4.2"  -I"C:/Dev-Cpp/include" 
+BIN  = fairymedium.exe
+CXXFLAGS = $(CXXINCS)  
+CFLAGS = $(INCS)  
+RM = rm -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before fairymedium.exe all-after
+
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CC) $(LINKOBJ) -o "fairymedium.exe" $(LIBS)
+
+board.o: board.c C:/Dev-Cpp/include/stdio.h C:/Dev-Cpp/include/_mingw.h   C:/Dev-Cpp/include/sys/types.h board.h hash.h
+	$(CC) -c board.c -o board.o $(CFLAGS)
+
+getMove.o: getMove.c C:/Dev-Cpp/include/stdio.h   C:/Dev-Cpp/include/_mingw.h C:/Dev-Cpp/include/sys/types.h   C:/Dev-Cpp/include/stdlib.h C:/Dev-Cpp/include/time.h board.h search.h   hash.h eval.h
+	$(CC) -c getMove.c -o getMove.o $(CFLAGS)
+
+search.o: search.c C:/Dev-Cpp/include/stdlib.h   C:/Dev-Cpp/include/_mingw.h C:/Dev-Cpp/include/limits.h   C:/Dev-Cpp/include/stdio.h C:/Dev-Cpp/include/sys/types.h   C:/Dev-Cpp/include/time.h search.h board.h eval.h hash.h
+	$(CC) -c search.c -o search.o $(CFLAGS)
+
+eval.o: eval.c C:/Dev-Cpp/include/stdlib.h C:/Dev-Cpp/include/_mingw.h   C:/Dev-Cpp/include/stdio.h C:/Dev-Cpp/include/sys/types.h board.h   eval.h
+	$(CC) -c eval.c -o eval.o $(CFLAGS)
+
+hash.o: hash.c C:/Dev-Cpp/include/stdlib.h C:/Dev-Cpp/include/_mingw.h   C:/Dev-Cpp/include/stdio.h C:/Dev-Cpp/include/sys/types.h hash.h   board.h
+	$(CC) -c hash.c -o hash.o $(CFLAGS)

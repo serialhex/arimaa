@@ -1,0 +1,98 @@
+#! /usr/bin/env python
+import sys
+import random
+import string
+
+import genMove
+# Reads the board in
+def readBoard(board_file):
+    file = open(board_file, 'r')
+    return parseBoard(file)
+
+# Parses the board
+def parseBoard(file):
+
+    board = [[' ' for col in range (8)] for row in range(8)]  
+
+    count = file.read(1)  # turn number
+    turn = file.read(2)   # white or black
+    lines = file.readlines() # the rest of the lines
+    del lines[0:2] # get rid of the +----+
+    del lines[8:10] # get rid of the bottom rows
+      
+    # By now, the board should like this:
+    # 8|   r   r r   r   |
+    # 7| m   h     e   c |
+    # 6|   r x r r x r   |
+    # 5| h   d     c   d |
+    # 4| E   H         M |
+    # 3|   R x R R H R   |
+    # 2| D   C     C   D |
+    # 1|   R   R R   R   |
+
+    # We need to grab each char from the board
+    # and construct a board state.
+    # Row obviously starts at 0, col starts at 5
+    # because that's where chars start in the above board.
+    row = 0
+    line_col = 3
+    for line in lines:
+        for col in range (8):
+            char = line[line_col]
+            board[row][col] = char
+            line_col = line_col + 2
+        row = row + 1
+        line_col = 3
+    return (count, turn, board) 
+
+# Random function that
+# picks starting positions based off a turns color
+# These are predefined as good starting positions.
+def randSetup(turn):
+   if turn == 'w' or turn == 'g':
+     setup = ['Ee2 Md2 Ca1 Dc2 Hb2 Hg2 Ch1 Df2 Rb1 Rc1 Rd1 Re1 Rf1 Rg1 Ra2 Rh2',
+              'Ee2 Md2 Da1 Hb2 Dh1 Hg2 Cf1 Cc1 Rb1 Rd1 Re1 Rg1 Ra2 Rc2 Rf2 Rh2',
+              'Ee2 Md2 Hh2 Dg2 Db1 Ca2 He1 Cf1 Ra1 Rc1 Rd1 Rg1 Rh1 Rb2 Rc2 Rf2',
+              'Ee2 Md2 Ha2 Hh2 Db2 Dg2 Cc2 Cf2 Ra1 Rb1 Rc1 Rd1 Re1 Rf1 Rg1 Rh1']
+   else:
+     setup = ['ee7 md7 ha7 hh7 db7 dg7 cf8 cc8 rc7 rf7 ra8 rb8 rd8 re8 rg8 rh8',
+              'ha7 hh7 dg7 me7 ed7 cc8 cf8 da8 rb7 rc7 rf7 rb8 rd8 re8 rg8 rh8',
+              'ee7 md7 ha7 hh7 db7 dg7 cf8 cc8 rc7 rf7 ra8 rb8 rd8 re8 rg8 rh8',
+              'me7 ed7 ha7 hh7 db7 dg7 cc8 cf8 rc7 rf7 ra8 rb8 rd8 re8 rg8 rh8']
+
+   return setup[random.randint(0,3)]
+
+# Returns the strength value of a given piece.
+def pieceVal(piece):
+    piece = piece.lower()   # Make the piece lowercase.
+    transTable = string.maketrans("emhdcr", "654321")  # Make the translation table.
+    piece = string.translate(piece, transTable)  # Translate the piece
+    return piece
+
+
+
+# Make random move
+def makeRandomMove(turn, count, board):
+    if turn == 'w' or turn == 'g':
+        direction = "n"
+    else:
+        direction = "s"
+ 
+# Searches for a random piece to move
+def searchRandomPiece(turn, board):
+    for pos in board:
+        if turn == 'w':
+            if pos.isUpper():
+                return pos
+
+board_file = sys.argv[1]
+
+(count, turn, board) = readBoard(board_file)
+
+# Setup Board
+if count == "1":
+# uncomment if you're feeling adventurous  
+# genMove.generateMove(board, turn)
+  print randSetup(turn)
+else:
+  print searchRandomPiece(turn, board)

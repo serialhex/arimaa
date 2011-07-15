@@ -1,0 +1,201 @@
+<ui version="4.0" >
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow" >
+  <property name="windowModality" >
+   <enum>Qt::WindowModal</enum>
+  </property>
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>894</width>
+    <height>592</height>
+   </rect>
+  </property>
+  <property name="sizePolicy" >
+   <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="maximumSize" >
+   <size>
+    <width>900</width>
+    <height>600</height>
+   </size>
+  </property>
+  <property name="windowTitle" >
+   <string>TaGui</string>
+  </property>
+  <widget class="QWidget" name="centralwidget" >
+   <layout class="QVBoxLayout" name="verticalLayout_2" >
+    <item>
+     <widget class="QWidget" native="1" name="widget_2" >
+      <property name="sizePolicy" >
+       <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="layoutDirection" >
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <layout class="QHBoxLayout" >
+       <item>
+        <widget class="BoardWidget" native="1" name="board" >
+         <property name="sizePolicy" >
+          <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize" >
+          <size>
+           <width>700</width>
+           <height>700</height>
+          </size>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout" />
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" native="1" name="widget_3" >
+         <property name="sizePolicy" >
+          <sizepolicy vsizetype="Expanding" hsizetype="Fixed" >
+           <horstretch>200</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize" >
+          <size>
+           <width>300</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout" >
+          <item>
+           <widget class="QListWidget" name="record" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Expanding" hsizetype="Preferred" >
+              <horstretch>200</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize" >
+             <size>
+              <width>0</width>
+              <height>130</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" native="1" name="widget_4" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_2" >
+             <item>
+              <widget class="QPushButton" name="button_back" >
+               <property name="text" >
+                <string>Back</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="button_forward" >
+               <property name="text" >
+                <string>Forward</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+      <zorder>widget_3</zorder>
+      <zorder>board</zorder>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusbar" />
+  <widget class="QMenuBar" name="menubar" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>894</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuGame" >
+    <property name="title" >
+     <string>File</string>
+    </property>
+    <addaction name="actionLoadPosition" />
+    <addaction name="actionSavePosition" />
+    <addaction name="actionLoadGame" />
+    <addaction name="separator" />
+    <addaction name="actionExit" />
+   </widget>
+   <addaction name="menuGame" />
+  </widget>
+  <action name="actionLoadGame" >
+   <property name="text" >
+    <string>L&amp;oad record</string>
+   </property>
+  </action>
+  <action name="actionNewGame" >
+   <property name="text" >
+    <string>new</string>
+   </property>
+  </action>
+  <action name="actionExit" >
+   <property name="text" >
+    <string>E&amp;xit</string>
+   </property>
+  </action>
+  <action name="actionPlayer_x_player" >
+   <property name="text" >
+    <string>player x player</string>
+   </property>
+  </action>
+  <action name="actionComputer_color" >
+   <property name="text" >
+    <string>computer color</string>
+   </property>
+  </action>
+  <action name="actionNew_bot" >
+   <property name="text" >
+    <string>new bot</string>
+   </property>
+  </action>
+  <action name="actionLoadPosition" >
+   <property name="text" >
+    <string>&amp;Load position</string>
+   </property>
+  </action>
+  <action name="actionSavePosition" >
+   <property name="text" >
+    <string>&amp;Save position</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>BoardWidget</class>
+   <extends>QWidget</extends>
+   <header>board_widget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
